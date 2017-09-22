@@ -19,9 +19,10 @@ wget http://www-us.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5
 tar -xvzf apache-maven-3.5.0-bin.tar.gz
 
 mkdir /usr/apache/
-sudo mv /tmp/apache-maven-3.5.0 /usr/apache/apache-maven-3.5.0
-sudo chown -R ec2-user:ec2-user /usr/apache/apache-maven-3.5.0
+mv /tmp/apache-maven-3.5.0 /usr/apache/apache-maven-3.5.0
+chown -R ec2-user:ec2-user /usr/apache/apache-maven-3.5.0
 
+cd /tmp/
 git clone https://github.com/joao-emilio/aws-elb-tutorial-java-spring-boot-rest-api.git
 
 chown -R ec2-user:ec2-user /tmp/aws-elb-tutorial-java-spring-boot-rest-api
