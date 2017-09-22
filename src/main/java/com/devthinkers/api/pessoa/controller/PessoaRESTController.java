@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class PessoaRESTController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Pessoa> findAll() {
-		log.debug("FindAll Pessoa");
+		log.info("FindAll Pessoa " );
 		List<Pessoa> pessoas = service.findAll();
 		return pessoas;
 	}
