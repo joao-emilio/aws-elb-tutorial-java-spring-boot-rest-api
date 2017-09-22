@@ -405,3 +405,34 @@ Verify the connector's configuration, identify and stop any process that's liste
 2017-09-22 09:53:56.941  INFO 85860 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2017-09-22 09:53:56.941  INFO 85860 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2017-09-22 09:53:56.954  INFO 85860 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 13 ms
+2017-09-22 10:54:39.697  INFO 85860 --- [Thread-6] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@60410a: startup date [Fri Sep 22 09:53:54 BRT 2017]; root of context hierarchy
+2017-09-22 10:54:39.706  INFO 85860 --- [Thread-6] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-09-22 10:54:50.135  INFO 85860 --- [restartedMain] c.d.api.pessoa.SpringBootApplication     : Starting SpringBootApplication on Joaos-MacBook-Pro.local with PID 85860 (/Users/joaoemilio/devthinkers/projetos/elb-java-spring-boot/target/classes started by joaoemilio in /Users/joaoemilio/devthinkers/projetos/elb-java-spring-boot)
+2017-09-22 10:54:50.135  INFO 85860 --- [restartedMain] c.d.api.pessoa.SpringBootApplication     : No active profile set, falling back to default profiles: default
+2017-09-22 10:54:50.140  INFO 85860 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2508a63d: startup date [Fri Sep 22 10:54:50 BRT 2017]; root of context hierarchy
+2017-09-22 10:54:50.473  INFO 85860 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http) 8009 (http)
+2017-09-22 10:54:50.474  INFO 85860 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-09-22 10:54:50.474  INFO 85860 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-09-22 10:54:50.480  INFO 85860 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-09-22 10:54:50.480  INFO 85860 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 340 ms
+2017-09-22 10:54:50.502  INFO 85860 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-09-22 10:54:50.503  INFO 85860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-09-22 10:54:50.503  INFO 85860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-09-22 10:54:50.503  INFO 85860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-09-22 10:54:50.503  INFO 85860 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-09-22 10:54:50.553  INFO 85860 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2508a63d: startup date [Fri Sep 22 10:54:50 BRT 2017]; root of context hierarchy
+2017-09-22 10:54:50.560  INFO 85860 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/pessoa/],methods=[GET]}" onto public java.util.List<com.devthinkers.api.pessoa.domain.Pessoa> com.devthinkers.api.pessoa.controller.PessoaRESTController.findAll()
+2017-09-22 10:54:50.561  INFO 85860 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-09-22 10:54:50.562  INFO 85860 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-09-22 10:54:50.569  INFO 85860 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-22 10:54:50.570  INFO 85860 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-22 10:54:50.581  INFO 85860 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-09-22 10:54:50.586  INFO 85860 --- [restartedMain] oConfiguration$WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+2017-09-22 10:54:50.612  INFO 85860 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2017-09-22 10:54:50.652  INFO 85860 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-09-22 10:54:50.658  INFO 85860 --- [restartedMain] org.apache.coyote.ajp.AjpNioProtocol     : Initializing ProtocolHandler ["ajp-nio-8009"]
+2017-09-22 10:54:50.659  INFO 85860 --- [restartedMain] org.apache.coyote.ajp.AjpNioProtocol     : Starting ProtocolHandler [ajp-nio-8009]
+2017-09-22 10:54:50.661  INFO 85860 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http) 8009 (http)
+2017-09-22 10:54:50.663  INFO 85860 --- [restartedMain] c.d.api.pessoa.SpringBootApplication     : Started SpringBootApplication in 10.591 seconds (JVM running for 3667.66)
+2017-09-22 12:05:23.159  INFO 85860 --- [Thread-17] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2508a63d: startup date [Fri Sep 22 10:54:50 BRT 2017]; root of context hierarchy
+2017-09-22 12:05:23.265  INFO 85860 --- [Thread-17] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
