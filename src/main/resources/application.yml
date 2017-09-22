@@ -1,0 +1,13 @@
+server:
+   contextPath: /
+   port: 8080
+tomcat:
+   ajp:
+      port: 8009
+      remoteauthentication: false
+      enabled: true
+
+logging:
+   file: pessoa-api.log
+   level:
+       root: INFO

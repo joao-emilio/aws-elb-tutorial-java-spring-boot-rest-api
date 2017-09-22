@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <!-- Navigation -->
+    <section th:fragment="header">
+        <div id="menu-admin">
+            <div class="row">
+                <div id="menu-lateral">
+                    <div class="btn-group-vertical">
+                        <label class="btn btn-primary">
+                            <input  class="botao-menu-lateral" type="radio" name="content" id="home" ng-model="content" value="home"  /><a href="home.html"><i class="fa fa-home fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Home" ></i></a>
+                        </label>
+                        <hr>
+                        <label class="btn btn-primary">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="personal" ng-model="content" value="personal"/><i class="fa fa-flag fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Área do Personal"></i>
+                        </label>
+                        <hr>
+                        <label class="btn btn-primary">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="treinamentos" ng-model="content" value="treinamentos"/><i class="fa fa-flash fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Treinamentos"></i>
+                        </label>
+                        <hr>
+                        <label class="btn btn-primary">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="clientes" ng-model="content" value="clientes"/><i class="fa fa-user-plus fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Alunos"></i>
+                        </label>
+                        <hr>
+                        <label class="btn btn-primary">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="noticias" ng-model="content" value="noticias"/><i class="fa fa-envelope fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Notícias"></i>
+                        </label>
+                        <hr>
+                        <label class="btn btn-primary">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="enderecos" ng-model="content" value="enderecos"/><i class="fa fa-map-marker fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Endereços"></i>
+                        </label>
+                        <hr>
+                        <label class="btn btn-primary">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="parceiros" ng-model="content" value="parceiros"/><i class="fa fa-group fa-fw fa-2x" data-toggle="tooltip" data-placement="right" title="Parceiros"></i>
+                        </label>
+                        <label class="btn">
+                            <input class="botao-menu-lateral" type="radio" name="content" id="user" ng-model="content" value="user"/><img id="usuario-img"/>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="sub-menu">
+                    <div>
+                        <div class="list-group"  ng-show="content == 'personal'">
+                            <a href="servicos.html" class="btn-sub-menu list-group-item list-group-item-action">Meus Serviços</a>
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Minha Agenda</a>
+                            <a href="promocoes.html" class="btn-sub-menu list-group-item list-group-item-action">Minhas Promoções</a>
+                        </div>
+                        <div class="list-group"  ng-show="content == 'treinamentos'">
+                            <a href="grupos-musculares.html" class="btn-sub-menu list-group-item list-group-item-action">Grupos Musculares</a>
+                            <a href="series.html" class="btn-sub-menu list-group-item list-group-item-action">Séries</a>
+                        </div>
+                        <div class="list-group"  ng-show="content == 'clientes'">
+                            <a href="clientes.html" class="btn-sub-menu list-group-item list-group-item-action">Alunos</a>
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Agendamentos</a>
+                        </div>
+                        <div class="list-group"  ng-show="content == 'noticias'">
+                            <a href="noticias.html" class="btn-sub-menu list-group-item list-group-item-action">Minhas Notícias</a>
+                        </div>
+                        <div class="list-group"  ng-show="content == 'enderecos'">
+                            <a href="bairro.html" class="btn-sub-menu list-group-item list-group-item-action">Bairros</a>
+                            <a href="cidade.html" class="btn-sub-menu list-group-item list-group-item-action">Cidades</a>
+                            <a href="estado.html" class="btn-sub-menu list-group-item list-group-item-action">Estados</a>
+                            <a href="pais.html" class="btn-sub-menu list-group-item list-group-item-action">Países</a>
+                        </div>
+                        <div class="list-group"  ng-show="content == 'parceiros'">
+                            <a href="parceiros-pf.html" class="btn-sub-menu list-group-item list-group-item-action">Meus Parceiros PF</a>
+                            <a href="parceiros-pj.html" class="btn-sub-menu list-group-item list-group-item-action">Meus Parceiros PJ</a>
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Serviços de Parceiros</a>
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Promoções de Parceiros</a>
+                        </div>
+                        <div class="list-group"  ng-show="content == 'user'">
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Meu Perfil</a>
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Configurações</a>
+                            <a href="#" class="btn-sub-menu list-group-item list-group-item-action">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

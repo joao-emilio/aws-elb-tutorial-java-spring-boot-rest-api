@@ -1,0 +1,6 @@
+com/devthinkers/api/pessoa/domain/Pessoa.class
+com/devthinkers/api/pessoa/WebConfig.class
+com/devthinkers/api/pessoa/SpringBootApplication.class
+com/devthinkers/api/pessoa/controller/PessoaRESTController.class
+com/devthinkers/api/pessoa/json/JSONParser.class
+com/devthinkers/api/pessoa/service/PessoaService.class

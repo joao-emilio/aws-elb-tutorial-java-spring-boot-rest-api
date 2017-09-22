@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Personal Carvalho Admin.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/config/env.js"></script>
+
+</head>
+
+<body ng-controller="ParceiroPfController" data-ng-init="init()">
+
+<div id="wrapper">
+    <!-- HEADER E MENU -->
+    <div th:replace="header :: header">
+    </div>
+
+    <div id="page-wrapper">
+        <h2 class="title-page">Painel de Parceiros - PF</h2>
+        <hr/>
+
+        <button ng-click="new()" class="novo-item btn btn-primary pc-color-bg" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus"></i></button>
+
+        <section class="tabela">
+            <div class="container">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Lista de Parceiros - PF
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <table width="100%" class="table" >
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nome</th>
+                                        <th>Responsável</th>
+                                        <th>E-mail</th>
+                                        <th>Telefone</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody ng-repeat="parceiro in lista track by $index">
+                                    <tr class="odd gradeX">
+                                        <td> <button ng-click="edit(parceiro.id)" data-toggle="modal" data-target="#parceiroModal" class="btn btn-secondary btn-sm"><i class="fa fa-user"></i></button>  </td>
+                                        <td class="linha-nome" >{{parceiro.nome}}</td>
+                                        <td class="linha-responsavel" >{{parceiro.responsavel}}</td>
+                                        <td class="linha-valor" >{{parceiro.email}}</td>
+                                        <td class="linha-descricao" >{{parceiro.telefone}}</td>
+                                        <td>
+                                            <div>
+                                                <button ng-click="edit(parceiro.id)" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></button>
+                                                <button ng-click="delete(parceiro.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="parceiroModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Perfil do Parceiro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="pc-color">Dados de Parceiro</h4>
+                        <label>Nome:</label><p>{{parceiro.nome}}</p>
+                        <label>Email:</label><p>{{parceiro.email}}</p>
+                        <label>Telefone:</label><p>{{parceiro.telefone}}</p>
+                        <label>CPF:</label><p>{{parceiro.cpf}}</p>
+                        <label>ResponsÃ¡vel:</label><p>{{parceiro.responsavel}}</p>
+                        <hr>
+                        <h4 class="pc-color">Dados de Endereço</h4>
+                        <label>Rua:</label><p>{{parceiro.rua}}</p>
+                        <label>Número:</label><p>{{parceiro.numero}}</p>
+                        <label>Bairro:</label><p>{{parceiro.bairro}}</p>
+                        <label>Cidade:</label><p>{{parceiro.cidade}}</p>
+                        <label>Estado:</label><p>{{parceiro.estado}}</p>
+                        <label>PaÃ­s:</label><p>{{parceiro.pais}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary pc-color-bg" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade form-parceiro" id="myModal" >
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="row">
+                        <form class="ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-email ng-dirty ng-valid-parse ng-valid-minlength" ng-submit="submit(parceiro)" name="myForm" novalidate>
+
+
+                            <div class="modal-body">
+                                <div class="col-md-6">
+
+                                    <input type="hidden" name="id" id="id" value="{{id}}" ng-model="parceiro.id">
+
+                                    <label>Dados do Parceiro</label>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <input class="ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="nome" type="text" name="form.nome" placeholder="Nome" ng-model="parceiro.nome" ng-minlength="3" ng-maxlength="60" required aria-invalid="true"/>
+                                            <div class="help-block ng-scope ng-inactive" ng-messages="myForm.nome.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, insira o nome.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="responsavel" type="text" name="form.responsavel" placeholder="ResponsÃ¡vel" ng-model="parceiro.responsavel" required aria-invalid="true"/>
+                                            <div class="help-block ng-scope ng-inactive " ng-messages="myForm.responsavel.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, insira o responsável.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="email" type="email" name="form.email" placeholder="E-mail" ng-model="parceiro.email" required aria-invalid="true"/>
+                                            <div class="help-block ng-scope ng-inactive " ng-messages="myForm.email.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, insira um e-mail.</span>
+                                                <span class="msg-error-form" ng-message="email">Ops, insira um e-mail válido.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}$" id="telefone" type="tel" name="form.telefone" placeholder="(DDD)Telefone" ng-model="parceiro.telefone" required aria-invalid="true" phone-dir/>
+                                            <div class="help-block ng-scope ng-inactive " ng-messages="myForm.telefone.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="telefone">Ops, insira um telefone válido.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="cpf" type="text" name="form.cpf" placeholder="CPF" ng-model="parceiro.cpf" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Dados de Endereço</label>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="cep" type="text" name="form.cep" placeholder="CEP" ng-model="parceiro.endereco.cep" ng-change="changeHandler(parceiro.endereco.cep)" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="endereco" type="text" name="form.endereco" placeholder="Rua" ng-model="parceiro.endereco.logradouro" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="bairro" type="text" name="form.bairro" placeholder="Bairro" ng-model="parceiro.endereco.bairro.nome" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="cidade" type="text" name="form.cidade" placeholder="Cidade" ng-model="parceiro.endereco.cidade.nome" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="uf" type="text" name="form.uf" placeholder="UF" ng-model="parceiro.endereco.estado.uf" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input id="pais" type="text" name="form.pais" placeholder="Pais" ng-model="parceiro.endereco.pais.nome" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="col-sm-12">
+                                    <button type="button" ng-click="submit(parceiro)" class="btn btn-primary">Salvar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Angular JS -->
+<script src="https://code.angularjs.org/snapshot/angular.js"></script>
+<script src="https://code.angularjs.org/snapshot/angular-messages.min.js"></script>
+<script src="../js/angular-bootstrap-file-field.min.js"></script>
+
+<!-- Sweet Alert
+<script src="js/sweetalert.min.js"></script> -->
+
+<script src="../js/app.js"></script>
+<script src="../js/service/cep-service.js"></script>
+<script src="../js/service/parceiro-pf-service.js"></script>
+<script src="../js/controller/parceiro-pf-controller.js"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
+
+</body>
+
+</html>

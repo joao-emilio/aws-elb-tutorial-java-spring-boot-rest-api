@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BodyApp Admin.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/config/env.js"></script>
+
+</head>
+
+<body ng-controller="EstadoController" data-ng-init="init()">
+
+    <div id="wrapper">
+
+        <!-- HEADER E MENU -->
+        <div th:replace="header :: header">
+        </div>
+
+        <div id="page-wrapper">
+
+            <button ng-click="new()" class="novo-item btn btn-primary pc-color-bg" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus"></i></button>
+
+            <section class="tabela">
+
+                <div class="container">
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Lista de Estados
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <table width="100%" class="table" >
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>UF</th>
+                                                <th>País</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="estado in lista track by $index">
+                                            <tr class="odd gradeX">
+                                                <td> <button ng-click="edit(estado.id)" data-toggle="modal" data-target="#estadoModal" class="btn btn-secondary btn-sm"><i class="fa fa-user"></i></button>  </td>
+                                                <td class="linha-nome" >{{estado.uf}}</td>
+                                                <td class="linha-valor" >{{estado.pais.nome}}</td>
+                                                <td>
+                                                    <div>
+                                                        <button ng-click="edit(estado.uf)" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></button>
+                                                        <button ng-click="delete(estado.uf)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>    
+          </section>
+
+            <!-- Modal -->
+            <div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Perfil do País</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="pc-color">Dados de País</h4>
+                            <label>Codigo:</label><p>{{estado.uf}}</p>
+                            <label>Nome:</label><p>{{estado.pais}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary pc-color-bg" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade form-estado" id="myModal" >
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <form ng-submit="EstadoController.submit()" name="myForm" novalidate>
+
+                            <div class="modal-body">
+
+
+                                <label>Dados do Estado</label>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <input id="uf" type="text" name="form.uf"  placeholder="UF" ng-model="estado.uf"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <select ng-model="estado.pais.id">
+                                            <option ng-repeat="pais in paises" value="{{pais.id}}">{{pais.nome}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" ng-click="submit(estado)" class="btn btn-primary">Salvar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Angular JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+    <script src="../js/angular-bootstrap-file-field.min.js"></script>
+
+
+    <script src="../js/app.js"></script>
+    <script src="../js/service/pais-service.js"></script>
+    <script src="../js/service/estado-service.js"></script>
+    <script src="../js/controller/estado-controller.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+
+</body>
+
+</html>

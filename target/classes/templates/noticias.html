@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Personal Carvalho Admin.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../js/config/env.js"></script>
+
+</head>
+
+<body ng-controller="NoticiaController" data-ng-init="init()">
+<div id="wrapper">
+
+    <!-- HEADER E MENU -->
+    <div th:replace="header :: header">
+    </div>
+
+    <div id="page-wrapper">
+        <h2 class="title-page">Painel de Notícias</h2>
+        <hr/>
+        <button ng-click="new()" class="novo-item btn btn-primary pc-color-bg" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus"></i></button>
+
+        <section class="tabela">
+
+            <div class="container">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Lista de Notícias
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <table width="100%" class="table" >
+                                    <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Descrição</th>
+                                        <th>URL</th>
+                                        <th>Thumbnail</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody ng-repeat="noticia in lista track by $index">
+                                    <tr class="odd gradeX">
+                                        <td class="linha-nome" width="20%">{{noticia.titulo}}</td>
+                                        <td class="linha-valor" width="30%">{{noticia.descricao.substring(0,30)}}</td>
+                                        <td class="linha-descricao"><img height="50" width="50" src="{{noticia.urlNoticia}}"/></td>
+                                        <td class="linha-descricao"><img height="50" width="50" src="{{noticia.urlThumbnail}}"/></td>
+                                        <td>
+                                            <div>
+                                                <button ng-click="edit(noticia.id)" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></button>
+                                                <button ng-click="delete(noticia.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </section>
+
+        <div class="modal fade form-noticia" id="myModal" >
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form ng-submit="NoticiaController.submit()" name="myForm" novalidate="novalidate" >
+
+                        <div class="modal-body">
+
+
+                            <input type="hidden" name="id" id="id" value="{{id}}" ng-model="noticia.id">
+
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input id="titulo" type="text" name="form.titulo" placeholder="Título" ng-model="noticia.titulo"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <textarea id="descricao" rows="3" type="text" name="form.descricao" placeholder="Descrição" ng-model="noticia.descricao"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input id="urlNoticia" name="form.urlNoticia" cols="40" placeholder="URL da Notícia" ng-model="noticia.urlNoticia" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input id="urlThumbnail" name="form.urlThumbnail" cols="40" placeholder="URL do Thumbnail" ng-model="noticia.urlThumbnail" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" ng-click="submit(noticia)" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Angular JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+<script src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+<script src="../js/angular-bootstrap-file-field.min.js"></script>
+
+<!-- Sweet Alert
+<script src="js/sweetalert.min.js"></script> -->
+
+<script src="../js/app.js"></script>
+<script src="../js/controller/noticia-controller.js"></script>
+<script src="../js/service/noticia-service.js"></script>
+
+</body>
+
+</html>

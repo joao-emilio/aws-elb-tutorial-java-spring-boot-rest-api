@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/config/env.js"></script>
+</head>
+
+<body ng-app="myApp" ng-cloak layout="column">
+    <div class="container" layout="row" flex>
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+            <md-list>
+                <md-list-item>
+                    <md-button ng-click="new()" class="novo-item btn btn-primary pc-color-bg" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus"></i></md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button>
+                        <md-icon md-svg-src="svg/child-male-avatar.svg" class="avatar"></md-icon>
+                        Joao Emilio
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button>
+                        <md-icon md-svg-src="svg/bald-male-avatar.svg" class="avatar"></md-icon>
+                        Fabio Santos
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content id="content" flex>
+            <md-icon md-svg-src="svg/child-male-avatar.svg" class="avatar"></md-icon>
+            <h2>Joao Emilio</h2>
+            <p>
+                Design of infrastructures including servers, storage, workstations, middleware, non-application and software that support the applications and business processes required by the client. Evaluation and selection of the software and hardware components of the infrastructure. Modeling, simulation, and testing to validate the designs and selected products. Responsible for performance, availability and scalability of the infrastructure.
+            </p>
+        </md-content>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script src="../js/angular-bootstrap-file-field.min.js"></script>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/service/user-service.js"></script>
+    <script src="../js/service/agenda-service.js"></script>
+    <script src="../js/controller/agenda-controller.js"></script>
+
+</body>
+</html>

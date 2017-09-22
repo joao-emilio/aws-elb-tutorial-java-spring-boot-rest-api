@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Personal Carvalho Admin.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/config/env.js"></script>
+
+</head>
+
+<body ng-controller="PromocaoController" data-ng-init="init()">
+
+<div id="wrapper">
+    <!-- HEADER E MENU -->
+    <div th:replace="header :: header">
+    </div>
+
+    <div id="page-wrapper">
+        <h2 class="title-page">Painel de Promoções</h2>
+        <hr/>
+
+        <button ng-click="new()" class="novo-item btn btn-primary pc-color-bg" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus"></i></button>
+
+        <section class="tabela">
+            <div class="container">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Lista de Promoções
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <table width="100%" class="table" >
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Título</th>
+                                            <th>Valor</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="promocao in lista track by $index">
+                                    <tr class="odd gradeX">
+                                        <td> <button ng-click="edit(promocao.id)" data-toggle="modal" data-target="#promocaoModal" class="btn btn-secondary btn-sm"><i class="fa fa-user"></i></button>  </td>
+                                        <td class="linha-titulo" >{{promocao.titulo}}</td>
+                                        <td class="linha-valor" >{{promocao.valor}}</td>
+                                        <td class="linha-descricao" >{{promocao.descricao}}</td>
+                                        <td>
+                                            <div>
+                                                <button ng-click="edit(promocao.id)" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></button>
+                                                <button ng-click="delete(promocao.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="promocaoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Informações da Promoção</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="pc-color">Dados de Promoção</h4>
+                        <label>Produto:</label><p>{{promocao.produto.nome}}</p>
+                        <label>Título:</label><p>{{promocao.titulo}}</p>
+                        <label>Valor:</label><p>{{promocao.valor}}</p>
+                        <label>Descricao:</label><p>{{promocao.descricao}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary pc-color-bg" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade form-promocao" id="myModal" >
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="row">
+                        <form class="ng-invalid ng-invalid-required ng-dirty ng-valid-parse" ng-submit="submit(promocao)" name="myForm" novalidate>
+
+
+                            <div class="modal-body">
+                                <div class="col-md-12">
+
+                                    <input type="hidden" name="id" id="id" value="{{id}}" ng-model="promocao.id">
+
+                                    <label>Dados da Promoção</label>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <select class="form-control ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" ng-model="promocao.produto.id" required aria-invalid="true">
+                                                <option ng-repeat="produto in produtos" value="{{produto.id}}">{{produto.nome}}</option>
+                                            </select>
+                                            <div class="help-block ng-scope ng-inactive" ng-messages="myForm.nome.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, informe o produto.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="titulo" type="text" name="form.titulo" placeholder="Título da promoção" ng-model="promocao.titulo" required aria-invalid="true"/>
+                                            <div class="help-block ng-scope ng-inactive" ng-messages="myForm.titulo.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, insira o título.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="valor" type="text" name="form.valor" placeholder="Valor" ng-model="promocao.valor" required aria-invalid="true"/>
+                                            <div class="help-block ng-scope ng-inactive " ng-messages="myForm.valor.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, insira o valor.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="descricao" type="text" name="form.descricao" placeholder="Descrição" ng-model="promocao.descricao" required aria-invalid="true"/>
+                                            <div class="help-block ng-scope ng-inactive " ng-messages="myForm.descricao.$error" ng-if="submitted">
+                                                <span class="msg-error-form" ng-message="required">Por favor, insira uma descrição.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="col-sm-12">
+                                    <button type="button" ng-click="submit(promocao)" class="btn btn-primary">Salvar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Angular JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+<script src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+<script src="../js/angular-bootstrap-file-field.min.js"></script>
+
+<!-- Sweet Alert
+<script src="js/sweetalert.min.js"></script> -->
+
+<script src="../js/app.js"></script>
+<script src="../js/service/produto-service.js"></script>
+<script src="../js/controller/promocao-controller.js"></script>
+<script src="../js/service/promocao-service.js"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
+
+</body>
+
+</html>

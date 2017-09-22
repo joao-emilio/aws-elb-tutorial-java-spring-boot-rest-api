@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Personal Carvalho Admin.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/config/env.js"></script>
+
+</head>
+
+<body ng-controller="ServicoController" data-ng-init="init()">
+<div id="wrapper">
+
+    <!-- HEADER E MENU -->
+    <div th:replace="header :: header">
+    </div>
+
+    <div id="page-wrapper">
+        <h2 class="title-page">Painel de Serviços</h2>
+        <hr/>
+        <section class="novo-servico">
+            <div class="container">
+                <div class="row">
+                    <form ng-submit="ServicoController.submit()" name="myForm" novalidate>
+
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <input type="hidden" name="id" id="id" value="{{id}}" ng-model="servico.id">
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="nome" type="text" name="form.nome" placeholder="Nome" ng-model="servico.nome" required aria-invalid="true"/>
+                                        <div class="help-block ng-scope ng-inactive" ng-messages="myForm.nome.$error" ng-if="submitted && servico.nome <= 1">
+                                            <span class="msg-error-form" ng-message="required">Por favor, insira o nome.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <input class="ng-dirty ng-valid-parse ng-touched ng-valid-required ng-valid has-error" id="valor" type="text" name="form.valor" placeholder="Preço" ng-model="servico.valor" required aria-invalid="true"/>
+                                        <div class="help-block ng-scope ng-inactive" ng-messages="myForm.valor.$error" ng-if="submitted && servico.valor <= 1">
+                                            <span class="msg-error-form" ng-message="required">Por favor, insira um valor maior que R$ 1.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <textarea id="descricao" rows="5" name="form.descricao" cols="40" placeholder="Descrição" ng-model="servico.descricao"> </textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" ng-click="submit(servico)" value="Submit" class="btn-salvar btn btn-primary pc-color-bg">Salvar</button>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="tabela">
+
+            <div class="container">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Lista de Serviços
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <table ng-table="tabelaServicos" width="100%" class="table" id="dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Preço</th>
+                                        <th>Descrição</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody ng-repeat="_servico in lista">
+                                    <tr class="odd gradeX">
+                                        <td class="linha-nome">{{_servico.nome}}</td>
+                                        <td class="linha-valor">{{_servico.valor}}</td>
+                                        <td class="linha-descricao">{{_servico.descricao}}</td>
+                                        <td>
+                                            <div>
+                                                <button ng-click="edit(_servico.id)" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></button>
+                                                <button ng-click="delete(_servico.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </section>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+
+
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Angular JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+<script src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+<script src="../js/angular-bootstrap-file-field.min.js"></script>
+
+<!-- Sweet Alert
+<script src="js/sweetalert.min.js"></script> -->
+
+<script src="../js/app.js"></script>
+<script src="../js/service/servico-service.js"></script>
+<script src="../js/controller/servico-controller.js"></script>
+
+</body>
+
+</html>
